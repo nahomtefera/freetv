@@ -200,18 +200,19 @@ export default function Player({channel}){
 
   return (
     <div className="video_container">
-      <div>
-        <h2 style={{color: "black"}}>{channel.title}</h2>
-      </div>
-      <Container maxWidth="md" justify="center">
+
+      <h2 style={{color: "#333", fontWeight:"600", textAlign:"left", width:'100%', paddingLeft:'25px'}}>{channel.title}</h2>
+
+      <Container maxWidth="100%" justify="center">
         <div  ref={playerContainerRef} 
               className="player__wrapper"
                onMouseMove={mouseMoveHandler} 
                onMouseLeave={mouseLeaveHandler}
                style={{ 
-                backgroundImage: `url(${channel.tvgLogo})`,
-                backgroundSize: 'contain', // Ensures the background image covers the entire container
-                backgroundPosition: 'center'
+                background: "#efefef",
+                // backgroundImage: `url(${channel.tvgLogo})`,
+                // backgroundSize: 'contain', // Ensures the background image covers the entire container
+                // backgroundPosition: 'center'
               }}
         >
           <ReactPlayer

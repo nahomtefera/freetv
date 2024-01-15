@@ -72,13 +72,11 @@ export default function Main({currentCategory}) {
     return (
         <div>
 
-            <br></br>
             {currentChannel && <Player channel={currentChannel} />}
-            <br /><br /><br />
             
             <Container>
 
-                <h1 style={{textAlign:"left", color: "#141414"}}>{currentCategory.name}</h1>
+                <h1 style={{textAlign:"left", color: "#333"}}>{currentCategory.name}</h1>
                 <Divider />
                 <Stack direction="row" flexWrap="wrap" spacing={5}>
 

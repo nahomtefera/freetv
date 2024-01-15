@@ -301,7 +301,7 @@ export default function PermanentDrawerLeft({children}) {
                         </ListItemIcon>
                         <ListItemText 
                             primary={category.name} 
-                            primaryTypographyProps={{ fontSize: 'small', fontWeight: '600', color:'#141414' }}
+                            primaryTypographyProps={{ fontSize: 'small', fontWeight: '600', color:'#333' }}
                             sx={{ marginLeft: 1 }} // Add some left margin for spacing
                         />
                     </ListItemButton>

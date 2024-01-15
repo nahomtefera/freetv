@@ -1,5 +1,6 @@
 /* global cast, chrome */
 import "./player.css";
+import { useEffect } from "react";
 import ReactPlayer from "react-player";
 import { Container } from "@material-ui/core";
 import Control from "../control/control";
@@ -186,13 +187,16 @@ export default function Player({channel}){
 
   const bufferStartHandler = () => {
     console.log("Bufering.......");
+    controlRef.current.style.visibility = "visible"
     setVideoState({ ...videoState, buffer: true });
   };
 
   const bufferEndHandler = () => {
     console.log("buffering stoped ,,,,,,play");
+    controlRef.current.style.visibility = "hidden"
     setVideoState({ ...videoState, buffer: false });
   };
+
 
   return (
     <div className="video_container">
@@ -200,7 +204,16 @@ export default function Player({channel}){
         <h2 style={{color: "black"}}>{channel.title}</h2>
       </div>
       <Container maxWidth="md" justify="center">
-        <div ref={playerContainerRef} className="player__wrapper" onMouseMove={mouseMoveHandler} onMouseLeave={mouseLeaveHandler}>
+        <div  ref={playerContainerRef} 
+              className="player__wrapper"
+               onMouseMove={mouseMoveHandler} 
+               onMouseLeave={mouseLeaveHandler}
+               style={{ 
+                backgroundImage: `url(${channel.tvgLogo})`,
+                backgroundSize: 'contain', // Ensures the background image covers the entire container
+                backgroundPosition: 'center'
+              }}
+        >
           <ReactPlayer
             ref={videoPlayerRef}
             className="player"

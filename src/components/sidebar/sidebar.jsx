@@ -15,9 +15,10 @@ import {
     ListItemButton,
     ListItemIcon, 
     ListItemText,
-    Container
+    Container,
+    useMediaQuery
 } from '@mui/material';
-
+import { useTheme } from '@mui/material/styles';
 import { Mail, Inbox, Star, Theaters, DirectionsCar, BusinessCenter, Movie, SentimentSatisfiedAlt, Restaurant, Museum, Description, School, People, Category, ChildFriendly, AccountBalance, EmojiEmotions, MusicNote, Landscape, BeachAccess, Filter, Tv, Store, SportsSoccer, Flight, WbSunny, Warning, HelpOutline} from '@material-ui/icons';
 
 
@@ -27,181 +28,182 @@ const categories = [
       "name": "Animation",
       "count": 68,
       "url": "https://iptv-org.github.io/iptv/categories/animation.m3u",
-      "icon": <Theaters/>
+      "icon": <Theaters style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "Auto",
       "count": 16,
       "url": "https://iptv-org.github.io/iptv/categories/auto.m3u",
-      "icon": <DirectionsCar/>
+      "icon": <DirectionsCar style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "Business",
       "count": 66,
       "url": "https://iptv-org.github.io/iptv/categories/business.m3u",
-      "icon": <BusinessCenter/>
+      "icon": <BusinessCenter style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "Classic",
       "count": 55,
       "url": "https://iptv-org.github.io/iptv/categories/classic.m3u",
-      "icon": <Movie/>
+      "icon": <Movie style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "Comedy",
       "count": 53,
       "url": "https://iptv-org.github.io/iptv/categories/comedy.m3u",
-      "icon": <SentimentSatisfiedAlt/>
+      "icon": <SentimentSatisfiedAlt style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "Cooking",
       "count": 23,
       "url": "https://iptv-org.github.io/iptv/categories/cooking.m3u",
-      "icon": <Restaurant/>
+      "icon": <Restaurant style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "Culture",
       "count": 91,
       "url": "https://iptv-org.github.io/iptv/categories/culture.m3u",
-      "icon": <Museum/>
+      "icon": <Museum style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "Documentary",
       "count": 64,
       "url": "https://iptv-org.github.io/iptv/categories/documentary.m3u",
-      "icon": <Description/>
+      "icon": <Description style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "Education",
       "count": 106,
       "url": "https://iptv-org.github.io/iptv/categories/education.m3u",
-      "icon": <School/>
+      "icon": <School style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "Entertainment",
       "count": 390,
       "url": "https://iptv-org.github.io/iptv/categories/entertainment.m3u",
-      "icon": <Theaters/>
+      "icon": <Theaters style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "Family",
       "count": 43,
       "url": "https://iptv-org.github.io/iptv/categories/family.m3u",
-      "icon": <People/>
+      "icon": <People style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "General",
       "count": 1361,
       "url": "https://iptv-org.github.io/iptv/categories/general.m3u",
-      "icon": <Category/>
+      "icon": <Category style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "Kids",
       "count": 201,
       "url": "https://iptv-org.github.io/iptv/categories/kids.m3u",
-      "icon": <ChildFriendly/>
+      "icon": <ChildFriendly style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "Legislative",
       "count": 174,
       "url": "https://iptv-org.github.io/iptv/categories/legislative.m3u",
-      "icon": <AccountBalance/>
+      "icon": <AccountBalance style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "Lifestyle",
       "count": 81,
       "url": "https://iptv-org.github.io/iptv/categories/lifestyle.m3u",
-      "icon": <EmojiEmotions/>
+      "icon": <EmojiEmotions style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "Movies",
       "count": 295,
       "url": "https://iptv-org.github.io/iptv/categories/movies.m3u",
-      "icon": <Movie/>
+      "icon": <Movie style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "Music",
       "count": 556,
       "url": "https://iptv-org.github.io/iptv/categories/music.m3u",
-      "icon": <MusicNote/>
+      "icon": <MusicNote style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "News",
       "count": 762,
       "url": "https://iptv-org.github.io/iptv/categories/news.m3u",
-      "icon": <Mail/>
+      "icon": <Mail style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "Outdoor",
       "count": 43,
       "url": "https://iptv-org.github.io/iptv/categories/outdoor.m3u",
-      "icon": <Landscape/>
+      "icon": <Landscape style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "Relax",
       "count": 8,
       "url": "https://iptv-org.github.io/iptv/categories/relax.m3u",
-      "icon": <BeachAccess/>
+      "icon": <BeachAccess style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "Religious",
       "count": 524,
       "url": "https://iptv-org.github.io/iptv/categories/religious.m3u",
-      "icon": <EmojiEmotions/>
+      "icon": <EmojiEmotions style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "Science",
       "count": 24,
       "url": "https://iptv-org.github.io/iptv/categories/science.m3u",
-      "icon": <Filter/>
+      "icon": <Filter style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "Series",
       "count": 160,
       "url": "https://iptv-org.github.io/iptv/categories/series.m3u",
-      "icon": <Tv/>
+      "icon": <Tv style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "Shop",
       "count": 78,
       "url": "https://iptv-org.github.io/iptv/categories/shop.m3u",
-      "icon": <Store/>
+      "icon": <Store style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "Sports",
       "count": 204,
       "url": "https://iptv-org.github.io/iptv/categories/sports.m3u",
-      "icon": <SportsSoccer/>
+      "icon": <SportsSoccer style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "Travel",
       "count": 28,
       "url": "https://iptv-org.github.io/iptv/categories/travel.m3u",
-      "icon": <Flight/>
+      "icon": <Flight style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "Weather",
       "count": 13,
       "url": "https://iptv-org.github.io/iptv/categories/weather.m3u",
-      "icon": <WbSunny/>
+      "icon": <WbSunny style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "XXX",
       "count": 61,
       "url": "https://iptv-org.github.io/iptv/categories/xxx.m3u",
-      "icon": <Warning/>
+      "icon": <Warning style={{fontSize: "18px", width:"65px"}}/>
     },
     {
       "name": "Undefined",
       "count": 5122,
       "url": "https://iptv-org.github.io/iptv/categories/undefined.m3u",
-      "icon": <HelpOutline/>
+      "icon": <HelpOutline style={{fontSize: "18px", width:"65px"}}/>
     }
   ]
 
 export default function PermanentDrawerLeft({children}) {
-  
+  const theme = useTheme();
   const [categoryURL, setCategoryURL] = useState('')
+  const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
 
   const handleOnCategoryClick = (URL) => {
     setCategoryURL(URL)
@@ -231,7 +233,7 @@ export default function PermanentDrawerLeft({children}) {
                 boxSizing: 'border-box',
             },
             }}
-            variant="permanent"
+            variant={isDesktop ? 'permanent' : 'temporary'}
             anchor="left"
         >
             <Toolbar />
@@ -250,7 +252,7 @@ export default function PermanentDrawerLeft({children}) {
                                 <ListItemIcon>
                                     {category.icon}
                                 </ListItemIcon>
-                                <ListItemText primary={category.name} />
+                                <ListItemText primaryTypographyProps={{ fontSize: 'small', fontWeight:"bold" }} primary={category.name} />
                             </ListItemButton>
                             </ListItem>
                         )

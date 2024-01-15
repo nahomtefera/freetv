@@ -45,6 +45,11 @@ export default function Main({categoryURL}) {
         };
     }, []);
 
+    const handleChannelClick = (channel) => {
+        setCurrentChannel(channel)
+        window.scrollTo(0, 0);
+    }
+ 
     useEffect(()=>{
         const fetchPlaylist = async () => {
             const response = await fetch(categoryURL);
@@ -81,7 +86,7 @@ export default function Main({categoryURL}) {
                                 overflow: 'hidden', // Ensure consistent heights
                               }}>
                                 <Item 
-                                    onClick={()=>{setCurrentChannel(channel)}}
+                                    onClick={()=>{handleChannelClick(channel)}}
                                     sx={{ my: 1, mx: 'auto', p: 2, cursor:'pointer'}} 
                                 >
                                     <Stack spacing={2} direction="row" alignItems="center" justifyContent="left">

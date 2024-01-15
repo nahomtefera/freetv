@@ -93,14 +93,15 @@ const Control = ({
   controlRef,
   fullScreenHandler,
   startCasting,
-  handleAirPlay
+  handleAirPlay,
+  channel
 }) => {
   const classes = useStyles();
 
   return (
     <div className="control_Container" ref ={controlRef}>
       <div className="top_container">
-        <h2>Video PLayer</h2>
+        <h2>{channel.title}</h2>
       </div>
 
       <div className="mid__container">

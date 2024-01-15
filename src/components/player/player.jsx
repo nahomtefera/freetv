@@ -7,7 +7,7 @@ import { useState, useRef } from "react";
 import { formatTime } from "../utils/format";
 
 let count = 0;
-export default function Player({streamURL}){
+export default function Player({channel}){
   const videoPlayerRef = useRef(null);
   const playerContainerRef = useRef(null);
   const controlRef = useRef(null);
@@ -62,7 +62,7 @@ export default function Player({streamURL}){
   const startCasting = () => {
     const castSession = cast.framework.CastContext.getInstance().getCurrentSession();
     if (castSession) {
-        const mediaInfo = new chrome.cast.media.MediaInfo(streamURL, 'application/x-mpegURL');
+        const mediaInfo = new chrome.cast.media.MediaInfo(channel.url, 'application/x-mpegURL');
         const request = new chrome.cast.media.LoadRequest(mediaInfo);
 
         castSession.loadMedia(request).then(
@@ -197,14 +197,14 @@ export default function Player({streamURL}){
   return (
     <div className="video_container">
       <div>
-        <h2>React player</h2>
+        <h2 style={{color: "black"}}>{channel.title}</h2>
       </div>
       <Container maxWidth="md" justify="center">
         <div ref={playerContainerRef} className="player__wrapper" onMouseMove={mouseMoveHandler} onMouseLeave={mouseLeaveHandler}>
           <ReactPlayer
             ref={videoPlayerRef}
             className="player"
-            url={streamURL}
+            url={channel.url}
             config={config}
             width="100%"
             height="auto"
@@ -241,6 +241,7 @@ export default function Player({streamURL}){
             fullScreenHandler={fullScreenHandler}
             startCasting={startCasting}
             handleAirPlay={handleAirPlay}
+            channel={channel}
           />
         </div>
       </Container>

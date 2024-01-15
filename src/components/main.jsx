@@ -3,14 +3,32 @@ import { useEffect, useState } from "react";
 // packages
 // import ReactHlsPlayer from "react-hls-player";
 // import ReactPlayer from "react-player";
+import { 
+    Avatar,
+    Stack,
+    Container,
+    Paper,
+    Typography
+} from '@mui/material';
+import { styled } from '@mui/material/styles';
+
 import Player from "./player/player";
 //..utils
 import parseM3U from "./utils/parseM3U";
 
-export default function Main() {
+const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    maxWidth: 400,
+}));
+
+export default function Main({categoryURL}) {
 
     const [channels, setChannels] = useState([]);
-    const [streamURL, setStreamURL] = useState('')
+    const [currentChannel, setCurrentChannel] = useState('')
 
     const initializeCastApi = () => {
         cast.framework.CastContext.getInstance().setOptions({
@@ -29,7 +47,7 @@ export default function Main() {
 
     useEffect(()=>{
         const fetchPlaylist = async () => {
-            const response = await fetch('https://iptv-org.github.io/iptv/categories/animation.m3u');
+            const response = await fetch(categoryURL);
             const data = await response.text();
             return data;
         };
@@ -40,25 +58,54 @@ export default function Main() {
 
             setChannels(channels);
         };
-        
+        console.log(channels)
         displayChannels();
-    }, [])
+    }, [categoryURL])
 
     return (
         <div>
-            <ul>
-                {channels?.slice(0,4).map((channel, index)=>{
-                    return (
-                        <>
-                            <li key={`${index}-title`}> <strong>{channel.title}</strong></li>
-                            <li key={`${index}-url`}> {channel.url}</li>
-                        </>
-                    )
-                })}
-            </ul>
-            <input type="text" value={streamURL} placeholder="Stream url" onChange={(e)=>{setStreamURL(e.target.value)}} />
+
             <br></br>
-            {streamURL && <Player streamURL={streamURL} />}
+            {currentChannel && <Player channel={currentChannel} />}
+            <br /><br /><br />
+            
+            <Container>
+                <Stack direction="row" flexWrap="wrap" spacing={5}>
+
+                    {channels?.map((channel, index)=>{
+                        return (
+                            <div className="avatar__wrapper"         style={{
+                                flex: '1 1 20%', // Equal width for 3 cards per row with some spacing
+                                margin: '10px', // Adjust spacing between cards
+                                borderRadius: '4px',
+                                overflow: 'hidden', // Ensure consistent heights
+                              }}>
+                                <Item 
+                                    onClick={()=>{setCurrentChannel(channel)}}
+                                    sx={{ my: 1, mx: 'auto', p: 2, cursor:'pointer'}} 
+                                >
+                                    <Stack spacing={2} direction="row" alignItems="center" justifyContent="left">
+                                        <Avatar 
+                                            key={channel.title} 
+                                            src={channel.tvgLogo} 
+                                            sx={{ width: 80, height: 80 }}
+                                            style={{background:"#f0f0f0"}}
+                                        />                                    
+                                        <Typography wrap
+                                            sx={{
+                                                whiteSpace: 'nowrap', // Prevent text from wrapping
+                                                overflow: 'hidden',
+                                                textOverflow: 'ellipsis', // Show ellipsis for long titles
+                                            }}
+                                        >{channel.title}</Typography>
+                                    </Stack>
+                                </Item>
+                            </div>
+                        )
+                    })}
+                </Stack>
+            </Container>
+
         </div>
     )
 }

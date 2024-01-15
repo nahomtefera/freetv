@@ -52,7 +52,7 @@
   flex-basis: max-content;
 }
 
-span {
+.control_Container span {
   color: #fff;
   font-size: 0.8rem;
   margin-left: 10px;

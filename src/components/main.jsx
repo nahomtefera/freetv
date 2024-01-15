@@ -92,20 +92,38 @@ export default function Main({currentCategory}) {
                               }}>
                                 <Item 
                                     onClick={()=>{handleChannelClick(channel)}}
-                                    sx={{ my: 1, mx: 'auto', p: 2, cursor:'pointer'}} 
+                                    sx={{ 
+                                        my: 1, 
+                                        mx: 'auto', 
+                                        p: 2, 
+                                        cursor:'pointer',
+                                        boxShadow:"none"
+                                }} 
                                 >
-                                    <Stack spacing={2} direction="row" alignItems="center" justifyContent="left">
+                                    <Stack 
+                                        spacing={2} 
+                                        direction="row" 
+                                        alignItems="center" 
+                                        justifyContent="left"
+                                        sx={{boxShadow:"none"}}
+                                    >
                                         <Avatar 
                                             key={channel.title} 
                                             src={channel.tvgLogo} 
-                                            sx={{ width: 80, height: 80 }}
-                                            style={{background:"#f0f0f0"}}
+                                            sx={{ width: 50, height: 50}}
+                                            imgProps={{ style: { objectFit: 'contain' } }}
+                                            style={{background:"#00000033"}}
+                                            variant="rounded"
                                         />                                    
                                         <Typography wrap
+                                            primaryTypographyProps={{ fontSize: 'small', fontWeight: '600', color:'#141414' }}
                                             sx={{
                                                 whiteSpace: 'nowrap', // Prevent text from wrapping
                                                 overflow: 'hidden',
                                                 textOverflow: 'ellipsis', // Show ellipsis for long titles
+                                                fontSize: 'small',
+                                                fontWeight: '600',
+                                                color: '#141414'
                                             }}
                                         >{channel.title}</Typography>
                                     </Stack>

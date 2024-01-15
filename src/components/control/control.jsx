@@ -3,22 +3,22 @@ import {
   makeStyles,
   Slider,
   withStyles,
-  Button,
-  Tooltip,
-  Popover,
-  Grid,
+  // Button,
+  // Tooltip,
+  // Popover,
+  // Grid,
 } from "@material-ui/core";
 import {
   FastForward,
   FastRewind,
   Pause,
   PlayArrow,
-  SkipNext,
+  // SkipNext,
   VolumeUp,
   VolumeOff,
   Fullscreen,
   Refresh,
-  Cast,
+  // Cast,
   Airplay
 } from "@material-ui/icons";
 import "./control.css";

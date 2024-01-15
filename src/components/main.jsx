@@ -8,13 +8,15 @@ import {
     Stack,
     Container,
     Paper,
-    Typography
+    Typography,
+    Divider
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 import Player from "./player/player";
 //..utils
 import parseM3U from "./utils/parseM3U";
+import { Category } from "@material-ui/icons";
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -25,7 +27,7 @@ const Item = styled(Paper)(({ theme }) => ({
     maxWidth: 400,
 }));
 
-export default function Main({categoryURL}) {
+export default function Main({currentCategory}) {
 
     const [channels, setChannels] = useState([]);
     const [currentChannel, setCurrentChannel] = useState('')
@@ -52,7 +54,7 @@ export default function Main({categoryURL}) {
  
     useEffect(()=>{
         const fetchPlaylist = async () => {
-            const response = await fetch(categoryURL);
+            const response = await fetch(currentCategory.url);
             const data = await response.text();
             return data;
         };
@@ -65,7 +67,7 @@ export default function Main({categoryURL}) {
         };
         console.log(channels)
         displayChannels();
-    }, [categoryURL])
+    }, [currentCategory])
 
     return (
         <div>
@@ -75,6 +77,9 @@ export default function Main({categoryURL}) {
             <br /><br /><br />
             
             <Container>
+
+                <h1 style={{textAlign:"left", color: "#141414"}}>{currentCategory.name}</h1>
+                <Divider />
                 <Stack direction="row" flexWrap="wrap" spacing={5}>
 
                     {channels?.map((channel, index)=>{

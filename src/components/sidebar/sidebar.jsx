@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import Main from '../main';
+import './sidebar.css'
 import { 
     Hidden,
     Box, 
@@ -203,12 +204,12 @@ const categories = [
 
 export default function PermanentDrawerLeft({children}) {
   const theme = useTheme();
-  const [categoryURL, setCategoryURL] = useState('')
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
   const [drawerOpen, setDrawerOpen] = useState(!isDesktop);
+  const [currentCategory, setCurrentCategory] = useState(categories[0]);
 
-  const handleOnCategoryClick = (URL) => {
-    setCategoryURL(URL)
+  const handleOnCategoryClick = (category) => {
+    setCurrentCategory(category)
   }
 
   const handleDrawerToggle = () => {
@@ -218,9 +219,14 @@ export default function PermanentDrawerLeft({children}) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar
-        position="fixed"
-        // sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+      <AppBar position="fixed" 
+        sx={{ 
+            zIndex: isDesktop ? theme.zIndex.drawer + 1 : theme.zIndex.appBar,
+            minHeight: '30px',        // Set the height to 30px
+            background: 'white', // Set the background color to white
+            boxShadow: 'none',
+            borderBottom: "1px solid #ccc"     // Remove the shadow
+            }}
       >
         <Toolbar>
             {!isDesktop && (
@@ -229,12 +235,14 @@ export default function PermanentDrawerLeft({children}) {
                 aria-label="open drawer"
                 edge="start"
                 onClick={handleDrawerToggle}
-                sx={{ mr: 2 }}
+                sx={{
+                    mr: 2,
+                  }}
                 >
                 <Menu />
                 </IconButton>
           )}
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h6" noWrap color="#141414" component="div">
             freetv
           </Typography>
         </Toolbar>
@@ -242,13 +250,21 @@ export default function PermanentDrawerLeft({children}) {
       
       <Hidden smDown implementation="css">
         <Drawer
+            className='drawer-scrollbar'
             sx={{
             width: drawerWidth,
             flexShrink: 0,
             '& .MuiDrawer-paper': {
                 width: drawerWidth,
                 boxSizing: 'border-box',
-            },
+                overflow: 'auto',
+                // Add the class for the custom scrollbar styles
+                '&::-webkit-scrollbar': {
+                    display: 'none', // for Chrome, Safari, and Opera
+                  },
+                scrollbarWidth: 'none', // for Firefox
+                '-ms-overflow-style': 'none', // for Internet Explorer 10+            
+              },
             }}
             variant={isDesktop ? 'permanent' : 'temporary'}
             open={drawerOpen}
@@ -256,27 +272,41 @@ export default function PermanentDrawerLeft({children}) {
             anchor="left"
         >
             <Toolbar />
+
             <List>
                 <ListItem key="Categories">
-                    <ListItemText primary='Categories' />
+                {/* Invisible ListItemIcon for alignment */}
+                    <ListItemText 
+                        primary='Categories' 
+                        primaryTypographyProps={{ fontSize: 'medium', fontWeight: 'bold' }}
+                        sx={{ paddingLeft: '10px' }} // Adds padding of 40px to all sides
+                    />
                 </ListItem>
-            </List>
-            <Divider />
-            <List>
-                {
-                    categories.map((category, index) => {
-                        return(
-                            <ListItem key={`CategoryItem-${index}`} disablePadding>
-                            <ListItemButton onClick={()=>{handleOnCategoryClick(category.url)}}>
-                                <ListItemIcon>
-                                    {category.icon}
-                                </ListItemIcon>
-                                <ListItemText primaryTypographyProps={{ fontSize: 'small', fontWeight:"bold" }} primary={category.name} />
-                            </ListItemButton>
-                            </ListItem>
-                        )
-                    })
-                }
+                {categories.map((category, index) => (
+                <ListItem 
+                    key={`CategoryItem-${index}`} disablePadding
+                    sx={{
+                        background: currentCategory.name === category.name ? '#0000000a' : 'inherit'
+                    }}
+                >
+                    <ListItemButton 
+                        onClick={() => { handleOnCategoryClick(category)}}
+                        sx={{
+                            padding: "3px 0",
+                            margin:"3px 0"
+                        }}
+                    >
+                        <ListItemIcon sx={{maxWidth: "40px", minWidth:"40px"}}>
+                            {category.icon}
+                        </ListItemIcon>
+                        <ListItemText 
+                            primary={category.name} 
+                            primaryTypographyProps={{ fontSize: 'small', fontWeight: '600', color:'#141414' }}
+                            sx={{ marginLeft: 1 }} // Add some left margin for spacing
+                        />
+                    </ListItemButton>
+                </ListItem>
+                ))}
             </List>
         </Drawer>
       </Hidden>
@@ -285,7 +315,7 @@ export default function PermanentDrawerLeft({children}) {
         sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3}}
       >
         <Toolbar />
-        <Main categoryURL={categoryURL} />
+        <Main currentCategory={currentCategory} />
       </Container>
     </Box>
   );

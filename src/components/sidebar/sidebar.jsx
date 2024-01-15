@@ -7,6 +7,7 @@ import {
     Drawer, 
     CssBaseline, 
     AppBar,
+    IconButton,
     Toolbar,
     List,
     Typography,
@@ -19,7 +20,7 @@ import {
     useMediaQuery
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { Mail, Inbox, Star, Theaters, DirectionsCar, BusinessCenter, Movie, SentimentSatisfiedAlt, Restaurant, Museum, Description, School, People, Category, ChildFriendly, AccountBalance, EmojiEmotions, MusicNote, Landscape, BeachAccess, Filter, Tv, Store, SportsSoccer, Flight, WbSunny, Warning, HelpOutline} from '@material-ui/icons';
+import { Mail, Menu, Inbox, Star, Theaters, DirectionsCar, BusinessCenter, Movie, SentimentSatisfiedAlt, Restaurant, Museum, Description, School, People, Category, ChildFriendly, AccountBalance, EmojiEmotions, MusicNote, Landscape, BeachAccess, Filter, Tv, Store, SportsSoccer, Flight, WbSunny, Warning, HelpOutline} from '@material-ui/icons';
 
 
 const drawerWidth = 240;
@@ -204,19 +205,35 @@ export default function PermanentDrawerLeft({children}) {
   const theme = useTheme();
   const [categoryURL, setCategoryURL] = useState('')
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
+  const [drawerOpen, setDrawerOpen] = useState(!isDesktop);
 
   const handleOnCategoryClick = (URL) => {
     setCategoryURL(URL)
   }
+
+  const handleDrawerToggle = () => {
+    setDrawerOpen(!drawerOpen);
+  };
 
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar
         position="fixed"
-        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+        // sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
       >
         <Toolbar>
+            {!isDesktop && (
+                <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="start"
+                onClick={handleDrawerToggle}
+                sx={{ mr: 2 }}
+                >
+                <Menu />
+                </IconButton>
+          )}
           <Typography variant="h6" noWrap component="div">
             freetv
           </Typography>
@@ -234,6 +251,8 @@ export default function PermanentDrawerLeft({children}) {
             },
             }}
             variant={isDesktop ? 'permanent' : 'temporary'}
+            open={drawerOpen}
+            onClose={() => setDrawerOpen(false)}
             anchor="left"
         >
             <Toolbar />

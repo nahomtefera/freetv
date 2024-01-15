@@ -1,8 +1,8 @@
 /* global cast, chrome */
 import { useEffect, useState } from "react";
 // packages
-import ReactHlsPlayer from "react-hls-player";
-import ReactPlayer from "react-player";
+// import ReactHlsPlayer from "react-hls-player";
+// import ReactPlayer from "react-player";
 import Player from "./player/player";
 //..utils
 import parseM3U from "./utils/parseM3U";

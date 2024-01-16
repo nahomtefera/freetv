@@ -279,7 +279,7 @@ export default function PermanentDrawerLeft({children}) {
                     <ListItemText 
                         primary='Categories' 
                         primaryTypographyProps={{ fontSize: 'medium', fontWeight: 'bold' }}
-                        sx={{ paddingLeft: '10px' }} // Adds padding of 40px to all sides
+                        sx={{ paddingLeft: '3px' }} // Adds padding of 40px to all sides
                     />
                 </ListItem>
                 {categories.map((category, index) => (

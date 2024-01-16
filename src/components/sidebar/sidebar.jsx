@@ -188,12 +188,12 @@ const categories = [
       "url": "https://iptv-org.github.io/iptv/categories/weather.m3u",
       "icon": <CloudSun size={20} color="#18181B"/>
     },
-    {
-      "name": "XXX",
-      "count": 61,
-      "url": "https://iptv-org.github.io/iptv/categories/xxx.m3u",
-      "icon": <AlertTriangle size={20} color="#18181B"/>
-    },
+    // {
+    //   "name": "XXX",
+    //   "count": 61,
+    //   "url": "https://iptv-org.github.io/iptv/categories/xxx.m3u",
+    //   "icon": <AlertTriangle size={20} color="#18181B"/>
+    // },
     {
       "name": "Undefined",
       "count": 5122,

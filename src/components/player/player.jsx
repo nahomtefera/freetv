@@ -6,6 +6,7 @@ import { Container } from "@material-ui/core";
 import Control from "../control/control";
 import { useState, useRef } from "react";
 import { formatTime } from "../utils/format";
+import { Category } from "@material-ui/icons";
 
 let count = 0;
 export default function Player({channel}){
@@ -201,7 +202,7 @@ export default function Player({channel}){
   return (
     <div className="video_container">
 
-      <h2 style={{color: "#333", fontWeight:"600", textAlign:"left", width:'100%', paddingLeft:'25px'}}>{channel.title}</h2>
+      <h1 style={{color: "#18181B", fontWeight:"500", textAlign:"left", width:'100%', paddingLeft:'25px'}}>{channel.title}</h1>
 
       <Container maxWidth="100%" justify="center">
         <div  ref={playerContainerRef} 

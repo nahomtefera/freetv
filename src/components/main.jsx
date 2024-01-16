@@ -76,7 +76,7 @@ export default function Main({currentCategory}) {
             
             <Container>
 
-                <h1 style={{textAlign:"left", color: "#333"}}>{currentCategory.name}</h1>
+                <h1 style={{textAlign:"left", fontWeight:"500", color: "#18181B"}}>{currentCategory.name}</h1>
                 <Divider />
                 <Stack direction="row" flexWrap="wrap" spacing={5}>
 
@@ -85,7 +85,7 @@ export default function Main({currentCategory}) {
                             <div className="avatar__wrapper"         style={{
                                 flex: '1 1 20%', // Equal width for 3 cards per row with some spacing
                                 margin: '10px', // Adjust spacing between cards
-                                borderRadius: '4px',
+                                borderRadius: '20px',
                                 overflow: 'hidden', // Ensure consistent heights
                               }}>
                                 <Item 
@@ -97,7 +97,7 @@ export default function Main({currentCategory}) {
                                         cursor:'pointer',
                                         boxShadow:"none",
                                         background: currentChannel.title === channel.title 
-                                            ? '#0000000d' 
+                                            ? '#f5f5f5' 
                                             : 'inherit',
                                         '&:hover': {
                                             backgroundColor: '#00000009',

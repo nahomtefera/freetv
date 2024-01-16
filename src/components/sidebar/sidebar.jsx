@@ -30,175 +30,175 @@ const categories = [
       "name": "Animation",
       "count": 68,
       "url": "https://iptv-org.github.io/iptv/categories/animation.m3u",
-      "icon": <Clapperboard size={20}/>
+      "icon": <Clapperboard size={20} color='#18181B'/>
     },
     {
       "name": "Auto",
       "count": 16,
       "url": "https://iptv-org.github.io/iptv/categories/auto.m3u",
-      "icon": <CarFront size={20}/>
+      "icon": <CarFront size={20} color='#18181B'/>
     },
     {
       "name": "Business",
       "count": 66,
       "url": "https://iptv-org.github.io/iptv/categories/business.m3u",
-      "icon": <Briefcase size={20}/>
+      "icon": <Briefcase size={20} color='#18181B'/>
     },
     {
       "name": "Classic",
       "count": 55,
       "url": "https://iptv-org.github.io/iptv/categories/classic.m3u",
-      "icon": <Film size={20}/>
+      "icon": <Film size={20} color='#18181B'/>
     },
     {
       "name": "Comedy",
       "count": 53,
       "url": "https://iptv-org.github.io/iptv/categories/comedy.m3u",
-      "icon": <Laugh size={20}/>
+      "icon": <Laugh size={20} color='#18181B'/>
     },
     {
       "name": "Cooking",
       "count": 23,
       "url": "https://iptv-org.github.io/iptv/categories/cooking.m3u",
-      "icon": <ChefHat size={20}/>
+      "icon": <ChefHat size={20} color='#18181B'/>
     },
     {
       "name": "Culture",
       "count": 91,
       "url": "https://iptv-org.github.io/iptv/categories/culture.m3u",
-      "icon": <Landmark size={20}/>
+      "icon": <Landmark size={20} color='#18181B'/>
     },
     {
       "name": "Documentary",
       "count": 64,
       "url": "https://iptv-org.github.io/iptv/categories/documentary.m3u",
-      "icon": <BookOpenText size={20}/>
+      "icon": <BookOpenText size={20} color='#18181B'/>
     },
     {
       "name": "Education",
       "count": 106,
       "url": "https://iptv-org.github.io/iptv/categories/education.m3u",
-      "icon": <GraduationCap size={20} />
+      "icon": <GraduationCap size={20} color="#18181B"/>
     },
     {
       "name": "Entertainment",
       "count": 390,
       "url": "https://iptv-org.github.io/iptv/categories/entertainment.m3u",
-      "icon": <Drama size={20} />
+      "icon": <Drama size={20} color="#18181B"/>
     },
     {
       "name": "Family",
       "count": 43,
       "url": "https://iptv-org.github.io/iptv/categories/family.m3u",
-      "icon": <UsersRound size={20} />
+      "icon": <UsersRound size={20} color="#18181B"/>
     },
     {
       "name": "General",
       "count": 1361,
       "url": "https://iptv-org.github.io/iptv/categories/general.m3u",
-      "icon": <Shapes size={20} />
+      "icon": <Shapes size={20} color="#18181B"/>
     },
     {
       "name": "Kids",
       "count": 201,
       "url": "https://iptv-org.github.io/iptv/categories/kids.m3u",
-      "icon": <Baby size={20} />
+      "icon": <Baby size={20} color="#18181B"/>
     },
     {
       "name": "Legislative",
       "count": 174,
       "url": "https://iptv-org.github.io/iptv/categories/legislative.m3u",
-      "icon": <ScrollText size={20} />
+      "icon": <ScrollText size={20} color="#18181B"/>
     },
     {
       "name": "Lifestyle",
       "count": 81,
       "url": "https://iptv-org.github.io/iptv/categories/lifestyle.m3u",
-      "icon": <Coffee size={20} />
+      "icon": <Coffee size={20} color="#18181B"/>
     },
     {
       "name": "Movies",
       "count": 295,
       "url": "https://iptv-org.github.io/iptv/categories/movies.m3u",
-      "icon": <Popcorn size={20} />
+      "icon": <Popcorn size={20} color="#18181B"/>
     },
     {
       "name": "Music",
       "count": 556,
       "url": "https://iptv-org.github.io/iptv/categories/music.m3u",
-      "icon": <Music2 size={20} />
+      "icon": <Music2 size={20} color="#18181B"/>
     },
     {
       "name": "News",
       "count": 762,
       "url": "https://iptv-org.github.io/iptv/categories/news.m3u",
-      "icon": <Newspaper size={20} />
+      "icon": <Newspaper size={20} color="#18181B"/>
     },
     {
       "name": "Outdoor",
       "count": 43,
       "url": "https://iptv-org.github.io/iptv/categories/outdoor.m3u",
-      "icon": <FlameKindling size={20} />
+      "icon": <FlameKindling size={20} color="#18181B"/>
     },
     {
       "name": "Relax",
       "count": 8,
       "url": "https://iptv-org.github.io/iptv/categories/relax.m3u",
-      "icon": <Palmtree size={20} />
+      "icon": <Palmtree size={20} color="#18181B"/>
     },
     {
       "name": "Religious",
       "count": 524,
       "url": "https://iptv-org.github.io/iptv/categories/religious.m3u",
-      "icon": <Church size={20} />
+      "icon": <Church size={20} color="#18181B"/>
     },
     {
       "name": "Science",
       "count": 24,
       "url": "https://iptv-org.github.io/iptv/categories/science.m3u",
-      "icon": <Atom size={20} />
+      "icon": <Atom size={20} color="#18181B"/>
     },
     {
       "name": "Series",
       "count": 160,
       "url": "https://iptv-org.github.io/iptv/categories/series.m3u",
-      "icon": <Tv size={20} />
+      "icon": <Tv size={20} color="#18181B"/>
     },
     {
       "name": "Shop",
       "count": 78,
       "url": "https://iptv-org.github.io/iptv/categories/shop.m3u",
-      "icon": <Store size={20} />
+      "icon": <Store size={20} color="#18181B"/>
     },
     {
       "name": "Sports",
       "count": 204,
       "url": "https://iptv-org.github.io/iptv/categories/sports.m3u",
-      "icon": <Bike size={20} />
+      "icon": <Bike size={20} color="#18181B"/>
     },
     {
       "name": "Travel",
       "count": 28,
       "url": "https://iptv-org.github.io/iptv/categories/travel.m3u",
-      "icon": <Plane size={20} />
+      "icon": <Plane size={20} color="#18181B"/>
     },
     {
       "name": "Weather",
       "count": 13,
       "url": "https://iptv-org.github.io/iptv/categories/weather.m3u",
-      "icon": <CloudSun size={20} />
+      "icon": <CloudSun size={20} color="#18181B"/>
     },
     {
       "name": "XXX",
       "count": 61,
       "url": "https://iptv-org.github.io/iptv/categories/xxx.m3u",
-      "icon": <AlertTriangle size={20} />
+      "icon": <AlertTriangle size={20} color="#18181B"/>
     },
     {
       "name": "Undefined",
       "count": 5122,
       "url": "https://iptv-org.github.io/iptv/categories/undefined.m3u",
-      "icon": <Blocks size={20} />
+      "icon": <Blocks size={20} color="#18181B"/>
     }
   ]
 
@@ -239,10 +239,10 @@ export default function PermanentDrawerLeft({children}) {
                     mr: 2,
                   }}
                 >
-                <Menu color="#141414"/>
+                <Menu color="#18181B"/>
                 </IconButton>
           )}
-          <Typography variant="h6" noWrap color="#141414" component="div">
+          <Typography variant="h6" noWrap color="#18181B" component="div">
             freetv
           </Typography>
         </Toolbar>
@@ -279,21 +279,24 @@ export default function PermanentDrawerLeft({children}) {
                     <ListItemText 
                         primary='Categories' 
                         primaryTypographyProps={{ fontSize: 'medium', fontWeight: 'bold' }}
-                        sx={{ paddingLeft: '3px' }} // Adds padding of 40px to all sides
+                        sx={{ paddingLeft: '16px' }} // Adds padding of 40px to all sides
                     />
                 </ListItem>
                 {categories.map((category, index) => (
                 <ListItem 
                     key={`CategoryItem-${index}`} disablePadding
                     sx={{
-                        background: currentCategory.name === category.name ? '#0000000a' : 'inherit'
+                        width: "90%",
+                        margin: "0 auto",
                     }}
                 >
                     <ListItemButton 
                         onClick={() => { handleOnCategoryClick(category)}}
                         sx={{
-                            padding: "3px 0",
-                            margin:"3px 0"
+                            padding: "5px 0",
+                            margin:"2px 0",
+                            borderRadius: "10px",
+                            background: currentCategory.name === category.name ? '#f5f5f5' : 'inherit',
                         }}
                     >
                         <ListItemIcon sx={{maxWidth: "40px", minWidth:"40px", justifyContent:"end"}}>
@@ -301,7 +304,12 @@ export default function PermanentDrawerLeft({children}) {
                         </ListItemIcon>
                         <ListItemText 
                             primary={category.name} 
-                            primaryTypographyProps={{ fontSize: 'small', fontWeight: '600', color:'#333' }}
+                            primaryTypographyProps={{ 
+                                fontSize: '14px', 
+                                fontWeight: '600', 
+                                color:'#18181B',
+                                fontFamily: `'Open Sans', sans-serif`
+                            }}
                             sx={{ marginLeft: 1 }} // Add some left margin for spacing
                         />
                     </ListItemButton>

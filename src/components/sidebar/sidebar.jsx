@@ -21,7 +21,7 @@ import {
     useMediaQuery
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import { Mail, Menu, Inbox, Star, Theaters, DirectionsCar, BusinessCenter, Movie, SentimentSatisfiedAlt, Restaurant, Museum, Description, School, People, Category, ChildFriendly, AccountBalance, EmojiEmotions, MusicNote, Landscape, BeachAccess, Filter, Tv, Store, SportsSoccer, Flight, WbSunny, Warning, HelpOutline} from '@material-ui/icons';
+import { Clapperboard, CarFront, Briefcase, Film, Laugh, ChefHat, Landmark, BookOpenText, GraduationCap, Drama, UsersRound, Shapes, Baby, ScrollText, Coffee, Popcorn, Music2, Newspaper, FlameKindling, Palmtree, Church, Atom, Tv, Store, Bike, Plane, CloudSun, AlertTriangle, Blocks, Menu} from 'lucide-react';
 
 
 const drawerWidth = 240;
@@ -30,175 +30,175 @@ const categories = [
       "name": "Animation",
       "count": 68,
       "url": "https://iptv-org.github.io/iptv/categories/animation.m3u",
-      "icon": <Theaters style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <Clapperboard size={20}/>
     },
     {
       "name": "Auto",
       "count": 16,
       "url": "https://iptv-org.github.io/iptv/categories/auto.m3u",
-      "icon": <DirectionsCar style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <CarFront size={20}/>
     },
     {
       "name": "Business",
       "count": 66,
       "url": "https://iptv-org.github.io/iptv/categories/business.m3u",
-      "icon": <BusinessCenter style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <Briefcase size={20}/>
     },
     {
       "name": "Classic",
       "count": 55,
       "url": "https://iptv-org.github.io/iptv/categories/classic.m3u",
-      "icon": <Movie style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <Film size={20}/>
     },
     {
       "name": "Comedy",
       "count": 53,
       "url": "https://iptv-org.github.io/iptv/categories/comedy.m3u",
-      "icon": <SentimentSatisfiedAlt style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <Laugh size={20}/>
     },
     {
       "name": "Cooking",
       "count": 23,
       "url": "https://iptv-org.github.io/iptv/categories/cooking.m3u",
-      "icon": <Restaurant style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <ChefHat size={20}/>
     },
     {
       "name": "Culture",
       "count": 91,
       "url": "https://iptv-org.github.io/iptv/categories/culture.m3u",
-      "icon": <Museum style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <Landmark size={20}/>
     },
     {
       "name": "Documentary",
       "count": 64,
       "url": "https://iptv-org.github.io/iptv/categories/documentary.m3u",
-      "icon": <Description style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <BookOpenText size={20}/>
     },
     {
       "name": "Education",
       "count": 106,
       "url": "https://iptv-org.github.io/iptv/categories/education.m3u",
-      "icon": <School style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <GraduationCap size={20} />
     },
     {
       "name": "Entertainment",
       "count": 390,
       "url": "https://iptv-org.github.io/iptv/categories/entertainment.m3u",
-      "icon": <Theaters style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <Drama size={20} />
     },
     {
       "name": "Family",
       "count": 43,
       "url": "https://iptv-org.github.io/iptv/categories/family.m3u",
-      "icon": <People style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <UsersRound size={20} />
     },
     {
       "name": "General",
       "count": 1361,
       "url": "https://iptv-org.github.io/iptv/categories/general.m3u",
-      "icon": <Category style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <Shapes size={20} />
     },
     {
       "name": "Kids",
       "count": 201,
       "url": "https://iptv-org.github.io/iptv/categories/kids.m3u",
-      "icon": <ChildFriendly style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <Baby size={20} />
     },
     {
       "name": "Legislative",
       "count": 174,
       "url": "https://iptv-org.github.io/iptv/categories/legislative.m3u",
-      "icon": <AccountBalance style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <ScrollText size={20} />
     },
     {
       "name": "Lifestyle",
       "count": 81,
       "url": "https://iptv-org.github.io/iptv/categories/lifestyle.m3u",
-      "icon": <EmojiEmotions style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <Coffee size={20} />
     },
     {
       "name": "Movies",
       "count": 295,
       "url": "https://iptv-org.github.io/iptv/categories/movies.m3u",
-      "icon": <Movie style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <Popcorn size={20} />
     },
     {
       "name": "Music",
       "count": 556,
       "url": "https://iptv-org.github.io/iptv/categories/music.m3u",
-      "icon": <MusicNote style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <Music2 size={20} />
     },
     {
       "name": "News",
       "count": 762,
       "url": "https://iptv-org.github.io/iptv/categories/news.m3u",
-      "icon": <Mail style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <Newspaper size={20} />
     },
     {
       "name": "Outdoor",
       "count": 43,
       "url": "https://iptv-org.github.io/iptv/categories/outdoor.m3u",
-      "icon": <Landscape style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <FlameKindling size={20} />
     },
     {
       "name": "Relax",
       "count": 8,
       "url": "https://iptv-org.github.io/iptv/categories/relax.m3u",
-      "icon": <BeachAccess style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <Palmtree size={20} />
     },
     {
       "name": "Religious",
       "count": 524,
       "url": "https://iptv-org.github.io/iptv/categories/religious.m3u",
-      "icon": <EmojiEmotions style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <Church size={20} />
     },
     {
       "name": "Science",
       "count": 24,
       "url": "https://iptv-org.github.io/iptv/categories/science.m3u",
-      "icon": <Filter style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <Atom size={20} />
     },
     {
       "name": "Series",
       "count": 160,
       "url": "https://iptv-org.github.io/iptv/categories/series.m3u",
-      "icon": <Tv style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <Tv size={20} />
     },
     {
       "name": "Shop",
       "count": 78,
       "url": "https://iptv-org.github.io/iptv/categories/shop.m3u",
-      "icon": <Store style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <Store size={20} />
     },
     {
       "name": "Sports",
       "count": 204,
       "url": "https://iptv-org.github.io/iptv/categories/sports.m3u",
-      "icon": <SportsSoccer style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <Bike size={20} />
     },
     {
       "name": "Travel",
       "count": 28,
       "url": "https://iptv-org.github.io/iptv/categories/travel.m3u",
-      "icon": <Flight style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <Plane size={20} />
     },
     {
       "name": "Weather",
       "count": 13,
       "url": "https://iptv-org.github.io/iptv/categories/weather.m3u",
-      "icon": <WbSunny style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <CloudSun size={20} />
     },
     {
       "name": "XXX",
       "count": 61,
       "url": "https://iptv-org.github.io/iptv/categories/xxx.m3u",
-      "icon": <Warning style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <AlertTriangle size={20} />
     },
     {
       "name": "Undefined",
       "count": 5122,
       "url": "https://iptv-org.github.io/iptv/categories/undefined.m3u",
-      "icon": <HelpOutline style={{fontSize: "18px", width:"65px"}}/>
+      "icon": <Blocks size={20} />
     }
   ]
 
@@ -239,7 +239,7 @@ export default function PermanentDrawerLeft({children}) {
                     mr: 2,
                   }}
                 >
-                <Menu />
+                <Menu color="#141414"/>
                 </IconButton>
           )}
           <Typography variant="h6" noWrap color="#141414" component="div">
@@ -296,7 +296,7 @@ export default function PermanentDrawerLeft({children}) {
                             margin:"3px 0"
                         }}
                     >
-                        <ListItemIcon sx={{maxWidth: "40px", minWidth:"40px"}}>
+                        <ListItemIcon sx={{maxWidth: "40px", minWidth:"40px", justifyContent:"end"}}>
                             {category.icon}
                         </ListItemIcon>
                         <ListItemText 

@@ -3,9 +3,17 @@
   max-width: 500px!important;
 }
 
+.channel__wrapper:hover {
+  background: black;
+}
+
 .avatar__wrapper {
   display: flex;
   flex-direction: column;
+}
+
+.avatar__wrapper:hover .MuiStack-root {
+  background: black!important;
 }
 
 @layer base {

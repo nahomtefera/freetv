@@ -95,22 +95,30 @@ export default function Main({currentCategory}) {
                                         mx: 'auto', 
                                         p: 2, 
                                         cursor:'pointer',
-                                        boxShadow:"none"
-                                }} 
+                                        boxShadow:"none",
+                                        background: currentChannel.title === channel.title 
+                                            ? '#0000000d' 
+                                            : 'inherit',
+                                        '&:hover': {
+                                            backgroundColor: '#00000009',
+                                        }
+                                    }} 
                                 >
-                                    <Stack 
+                                    <Stack
                                         spacing={2} 
                                         direction="row" 
                                         alignItems="center" 
                                         justifyContent="left"
-                                        sx={{boxShadow:"none"}}
+                                        sx={{
+                                            boxShadow:"none"
+                                        }}
                                     >
                                         <Avatar 
                                             key={channel.title} 
                                             src={channel.tvgLogo} 
                                             sx={{ width: 50, height: 50}}
-                                            imgProps={{ style: { objectFit: 'contain' } }}
-                                            style={{background:"#00000033"}}
+                                            imgProps={{ style: { objectFit: 'cover' } }}
+                                            style={{background:"#00000066"}}
                                             variant="rounded"
                                         />                                    
                                         <Typography wrap

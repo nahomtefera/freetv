@@ -27,7 +27,7 @@ const Item = styled(Paper)(({ theme }) => ({
     maxWidth: 400,
 }));
 
-export default function Main({currentCategory}) {
+export default function Main({selectedChannelFromAutoComplete, currentCategory}) {
 
     const [channels, setChannels] = useState([]);
     const [currentChannel, setCurrentChannel] = useState('')
@@ -46,6 +46,11 @@ export default function Main({currentCategory}) {
             }
         };
     }, []);
+
+    // change channel based on autocomplete search term
+    useEffect(() => {
+        selectedChannelFromAutoComplete && setCurrentChannel(selectedChannelFromAutoComplete)
+    }, [selectedChannelFromAutoComplete])
 
     const handleChannelClick = (channel) => {
         setCurrentChannel(channel)

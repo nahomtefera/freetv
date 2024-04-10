@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Main from '../main';
 import './sidebar.css'
 import { 
@@ -18,10 +18,14 @@ import {
     ListItemIcon, 
     ListItemText,
     Container,
-    useMediaQuery
+    useMediaQuery,
+    Autocomplete,
+    TextField,
+    Stack
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { Clapperboard, CarFront, Briefcase, Film, Laugh, ChefHat, Landmark, BookOpenText, GraduationCap, Drama, UsersRound, Shapes, Baby, ScrollText, Coffee, Popcorn, Music2, Newspaper, FlameKindling, Palmtree, Church, Atom, Tv, Store, Bike, Plane, CloudSun, AlertTriangle, Blocks, Menu} from 'lucide-react';
+import parseM3U from '../utils/parseM3U';
 
 
 const drawerWidth = 240;
@@ -188,12 +192,12 @@ const categories = [
       "url": "https://iptv-org.github.io/iptv/categories/weather.m3u",
       "icon": <CloudSun size={20} color="#18181B"/>
     },
-    // {
-    //   "name": "XXX",
-    //   "count": 61,
-    //   "url": "https://iptv-org.github.io/iptv/categories/xxx.m3u",
-    //   "icon": <AlertTriangle size={20} color="#18181B"/>
-    // },
+    {
+      "name": "XXX",
+      "count": 61,
+      "url": "https://iptv-org.github.io/iptv/categories/xxx.m3u",
+      "icon": <AlertTriangle size={20} color="#18181B"/>
+    },
     {
       "name": "Undefined",
       "count": 5122,
@@ -202,11 +206,23 @@ const categories = [
     }
   ]
 
+function debounce(func, delay) {
+  let timeoutId;
+  return function (...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => func.apply(this, args), delay);
+  };
+}
+
 export default function PermanentDrawerLeft({children}) {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
   const [drawerOpen, setDrawerOpen] = useState(!isDesktop);
   const [currentCategory, setCurrentCategory] = useState(categories[0]);
+  const [allChannels, setAllChannels] = useState([])
+  const [searchTerm, setSearchTerm] = useState('')
+  const [filteredChannels, setFilteredChannels] = useState([]);
+  const [selectedChannelFromAutoComplete, setSelectedChannelFromAutoComplete] = useState(null)
 
   const handleOnCategoryClick = (category) => {
     setCurrentCategory(category)
@@ -214,6 +230,45 @@ export default function PermanentDrawerLeft({children}) {
 
   const handleDrawerToggle = () => {
     setDrawerOpen(!drawerOpen);
+  };
+
+  useEffect(() => {
+    const allChannels = [];
+
+    Promise.all(categories.map(category => 
+      fetch(category.url)
+        .then(response => response.text())
+        .then(data => {
+          const parsedChannels = parseM3U(data, category);
+          allChannels.push(...parsedChannels);
+        })
+    )).then(() => {
+      setAllChannels(allChannels);
+    });
+  }, []);
+
+
+  const debouncedHandleSearchTermChange = debounce((newSearchTerm) => {
+    console.log("newSearchTerm: ", newSearchTerm);
+    setSearchTerm(newSearchTerm);
+    if (newSearchTerm && newSearchTerm !== "" && typeof newSearchTerm === 'string') {
+      const filteredOptions = allChannels.filter((channel) =>
+        channel.title.toLowerCase().includes(newSearchTerm.toLowerCase())
+      );
+      setFilteredChannels(filteredOptions.slice(0, 50));
+    } else {
+      setFilteredChannels([]);
+    }
+  }, 300); // Adjust debounce delay as needed (300ms in this example)
+
+  const handleSelectChannel = (event, selectedChannelTitle) => {
+    // Find the selected channel object based on its title
+    const selectedChannel = allChannels.find(
+      (channel) => channel.title === selectedChannelTitle
+    );
+    setSelectedChannelFromAutoComplete(selectedChannel)
+    console.log("Selected channel:", selectedChannel);
+    // Do something with the selected channel
   };
 
   return (
@@ -225,10 +280,15 @@ export default function PermanentDrawerLeft({children}) {
             minHeight: '30px',        // Set the height to 30px
             background: 'white', // Set the background color to white
             boxShadow: 'none',
-            borderBottom: "1px solid #ccc"     // Remove the shadow
-            }}
+            borderBottom: "1px solid #ccc",    // Remove the shadow
+            
+          }}
       >
-        <Toolbar>
+        <Toolbar sx={{
+          justifyContent: isDesktop ? 'flex-start' : 'space-between', 
+          paddingBottom:".5em", 
+          paddingTop:".5em"
+        }}>
             {!isDesktop && (
                 <IconButton
                 color="inherit"
@@ -245,6 +305,18 @@ export default function PermanentDrawerLeft({children}) {
           <Typography variant="h6" noWrap color="#18181B" component="div">
             freetv
           </Typography>
+          <Stack spacing={2} sx={{ width: isDesktop ? 600: 350, paddingLeft: isDesktop ? "3em" :"auto" }}>
+            <Autocomplete
+              id="free-solo-demo"
+              freeSolo
+              value={searchTerm}
+              options={filteredChannels.map((option) => option.title)}
+              getOptionLabel={(option) => String(option)}
+              onChange={(event, selectedChannelTitle)=>{handleSelectChannel(event, selectedChannelTitle)}}
+              onInputChange={(event, newSearchTerm) => debouncedHandleSearchTermChange(newSearchTerm)  }
+              renderInput={(params) => <TextField {...params} label="Search Channel" />}
+            />
+          </Stack>
         </Toolbar>
       </AppBar>
       
@@ -323,7 +395,7 @@ export default function PermanentDrawerLeft({children}) {
         sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3}}
       >
         <Toolbar />
-        <Main currentCategory={currentCategory} />
+        <Main selectedChannelFromAutoComplete={selectedChannelFromAutoComplete} currentCategory={currentCategory} filteredChannels/>
       </Container>
     </Box>
   );

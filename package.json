@@ -25,7 +25,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "CI=false npm install --legacy-peer-deps react-scripts build",
+    "build": "CI=false react-scripts build",
+    "install": "npm install --legacy-peer-deps",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -49,7 +49,7 @@ export default function Main({selectedChannelFromAutoComplete, currentCategory})
 
     // change channel based on autocomplete search term
     useEffect(() => {
-        selectedChannelFromAutoComplete && setCurrentChannel(selectedChannelFromAutoComplete)
+        selectedChannelFromAutoComplete && handleChannelClick(selectedChannelFromAutoComplete)
     }, [selectedChannelFromAutoComplete])
 
     const handleChannelClick = (channel) => {

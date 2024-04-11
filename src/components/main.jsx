@@ -52,9 +52,26 @@ export default function Main({selectedChannelFromAutoComplete, currentCategory})
         selectedChannelFromAutoComplete && handleChannelClick(selectedChannelFromAutoComplete)
     }, [selectedChannelFromAutoComplete])
 
-    const handleChannelClick = (channel) => {
+    const handleChannelClick = async (channel) => {
         setCurrentChannel(channel)
         window.scrollTo(0, 0);
+        try {
+            const response = await fetch('/.netlify/functions/increment-channel-views', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ tvgId: channel.tvgId }),
+            });
+    
+            if (!response.ok) {
+                throw new Error('Failed to increment channel views');
+            }
+    
+        } catch (error) {
+            console.error('Error incrementing channel views:', error);
+            // Handle error if needed
+        }
     }
  
     useEffect(()=>{

@@ -286,8 +286,8 @@ export default function PermanentDrawerLeft({children}) {
       >
         <Toolbar sx={{
           justifyContent: isDesktop ? 'flex-start' : 'space-between', 
-          paddingBottom:".5em", 
-          paddingTop:".5em"
+          padding: ".5em 15px .5em 5px  ",
+          gap: "10px"
         }}>
             {!isDesktop && (
                 <IconButton
@@ -296,13 +296,13 @@ export default function PermanentDrawerLeft({children}) {
                 edge="start"
                 onClick={handleDrawerToggle}
                 sx={{
-                    mr: 2,
+                    m: 0,
                   }}
                 >
                 <Menu color="#18181B"/>
                 </IconButton>
           )}
-          <Typography variant="h6" noWrap color="#18181B" component="div">
+          <Typography variant="h6" flexShrink={0} noWrap color="#18181B" component="div">
             freetv
           </Typography>
           <Stack spacing={2} sx={{ width: isDesktop ? 600: 350, paddingLeft: isDesktop ? "3em" :"auto" }}>

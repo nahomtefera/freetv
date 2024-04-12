@@ -1,5 +1,6 @@
 /* global cast, chrome */
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import Hls from 'hls.js';
 // packages
 // import ReactHlsPlayer from "react-hls-player";
 // import ReactPlayer from "react-player";
@@ -26,6 +27,46 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
     maxWidth: 400,
 }));
+
+
+function VideoPlayer({ currentChannel }) {
+    const videoRef = useRef(null);
+
+    useEffect(() => {
+        if (videoRef.current) {
+            if (Hls.isSupported()) {
+                const hls = new Hls();
+                hls.loadSource(currentChannel.url);
+                hls.attachMedia(videoRef.current);
+                hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                    videoRef.current.play();
+                });
+            } else if (videoRef.current.canPlayType('application/vnd.apple.mpegurl')) {
+                // This will work in Safari browser
+                videoRef.current.src = currentChannel.url;
+                videoRef.current.addEventListener('loadedmetadata', function() {
+                    videoRef.current.play();
+                });
+            }
+        }
+
+        return () => {
+            if (videoRef.current && Hls.isSupported()) {
+                // Destroy Hls instance when the component is to be unmounted
+                Hls.destroy();
+            }
+        };
+    }, [currentChannel.url]);
+
+    return (
+        <div>
+            {currentChannel && (
+                <video ref={videoRef} controls data-playsInline data-uk-video width="1920" height="1080"></video>
+            )}
+        </div>
+    );
+}
+
 
 export default function Main({selectedChannelFromAutoComplete, currentCategory}) {
 
@@ -94,8 +135,9 @@ export default function Main({selectedChannelFromAutoComplete, currentCategory})
     return (
         <div>
 
-            {currentChannel && <Player channel={currentChannel} />}
-            
+            {/* {currentChannel && <Player channel={currentChannel} />} */}
+            {currentChannel && <VideoPlayer currentChannel={currentChannel} />}
+
             <Container>
 
                 <h1 style={{textAlign:"left", fontWeight:"500", color: "#18181B"}}>{currentCategory.name}</h1>

@@ -3,7 +3,7 @@ import PermanentDrawerLeft from '../sidebar/sidebar'; // Import your Sidebar com
 
 const Layout = ({ children }) => {
   return (
-    <div>
+    <div className='uk-dark'>
       <PermanentDrawerLeft />
     </div>
   );

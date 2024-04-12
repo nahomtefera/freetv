@@ -272,36 +272,23 @@ export default function PermanentDrawerLeft({children}) {
   };
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'block' }}>
       <CssBaseline />
-      <AppBar position="fixed" 
+      <AppBar position="relative"
         sx={{ 
             zIndex: isDesktop ? theme.zIndex.drawer + 1 : theme.zIndex.appBar,
             minHeight: '30px',        // Set the height to 30px
-            background: 'white', // Set the background color to white
+            background: '#ffeb3b', // Set the background color to white
             boxShadow: 'none',
             borderBottom: "1px solid #ccc",    // Remove the shadow
             
           }}
       >
         <Toolbar sx={{
-          justifyContent: isDesktop ? 'flex-start' : 'space-between', 
+          justifyContent: isDesktop ? 'center' : 'center', 
           padding: ".5em 15px .5em 5px  ",
           gap: "10px"
         }}>
-            {!isDesktop && (
-                <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                edge="start"
-                onClick={handleDrawerToggle}
-                sx={{
-                    m: 0,
-                  }}
-                >
-                <Menu color="#18181B"/>
-                </IconButton>
-          )}
           <Typography variant="h6" flexShrink={0} noWrap color="#18181B" component="div">
             freetv
           </Typography>
@@ -309,6 +296,7 @@ export default function PermanentDrawerLeft({children}) {
             <Autocomplete
               id="free-solo-demo"
               freeSolo
+              style={{fontWeight: "bold"}}
               value={searchTerm}
               options={filteredChannels.map((option) => option.title)}
               getOptionLabel={(option) => String(option)}
@@ -320,12 +308,13 @@ export default function PermanentDrawerLeft({children}) {
         </Toolbar>
       </AppBar>
       
-      <Hidden smDown implementation="css">
+      <Hidden smDown implementation="css" >
         <Drawer
             className='drawer-scrollbar'
             sx={{
             width: drawerWidth,
             flexShrink: 0,
+            display:"none",
             '& .MuiDrawer-paper': {
                 width: drawerWidth,
                 boxSizing: 'border-box',
@@ -390,13 +379,8 @@ export default function PermanentDrawerLeft({children}) {
             </List>
         </Drawer>
       </Hidden>
-      <Container
-        component="main"
-        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3}}
-      >
-        <Toolbar />
-        <Main selectedChannelFromAutoComplete={selectedChannelFromAutoComplete} currentCategory={currentCategory} filteredChannels/>
-      </Container>
+
+      <Main selectedChannelFromAutoComplete={selectedChannelFromAutoComplete} currentCategory={currentCategory} filteredChannels/>
     </Box>
   );
 }

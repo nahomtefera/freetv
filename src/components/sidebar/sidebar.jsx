@@ -280,7 +280,7 @@ export default function PermanentDrawerLeft({children}) {
             minHeight: '30px',        // Set the height to 30px
             background: '#ffeb3b', // Set the background color to white
             boxShadow: 'none',
-            borderBottom: "1px solid #ccc",    // Remove the shadow
+            borderBottom: "none",    // Remove the shadow
             position: "sticky",
             top:"0"
           }}

@@ -272,20 +272,20 @@ export default function Main({selectedChannelFromAutoComplete, currentCategory})
     const [channels, setChannels] = useState([]);
     const [currentChannel, setCurrentChannel] = useState('')
 
-    const initializeCastApi = () => {
-        cast.framework.CastContext.getInstance().setOptions({
-            receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID,
-            autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED
-        });
-    };
+    // const initializeCastApi = () => {
+    //     cast.framework.CastContext.getInstance().setOptions({
+    //         receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID,
+    //         autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED
+    //     });
+    // };
     
-    useEffect(() => {
-        window['__onGCastApiAvailable'] = function(isAvailable) {
-            if (isAvailable) {
-                initializeCastApi();
-            }
-        };
-    }, []);
+    // useEffect(() => {
+    //     window['__onGCastApiAvailable'] = function(isAvailable) {
+    //         if (isAvailable) {
+    //             initializeCastApi();
+    //         }
+    //     };
+    // }, []);
 
     // change channel based on autocomplete search term
     useEffect(() => {
@@ -332,9 +332,9 @@ export default function Main({selectedChannelFromAutoComplete, currentCategory})
     // }, [currentCategory])
 
     useEffect(() => {
-        console.log("channelsFromLocal: ", channelsFromLocal)
+        // console.log("channelsFromLocal: ", channelsFromLocal)
         // setChannels(channelsFromLocal.filter(channel => channel.groupTitle == currentCategory.name))
-        console.log("categories: ", categories)
+        // console.log("categories: ", categories)
     }, [])
 
     function formatChannelTitle(title) {
@@ -416,30 +416,30 @@ export default function Main({selectedChannelFromAutoComplete, currentCategory})
                             category => {
                                 return (
                                     <>
-                                        <h4 style={{textAlign: 'left', fontWeight:'500', color:'#fff'}}>{category.name}</h4>
-                                        <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" data-uk-slider>
+                                        <h4 key={category.name} style={{textAlign: 'left', fontWeight:'500', color:'#fff'}}>{category.name}</h4>
+                                        <div className="uk-position-relative uk-visible-toggle uk-light" tabIndex="-1" data-uk-slider>
                                             <div 
-                                                class="uk-slider-items uk-child-width-1-2 uk-child-width-1-5@m uk-grid"
+                                                className="uk-slider-items uk-child-width-1-2 uk-child-width-1-5@m uk-grid"
                                                 style={{ display: 'flex', gap:"15px"}}
                                             >
                                                 {/* <div>
-                                                    <div class="uk-panel">
+                                                    <div className="uk-panel">
                                                         <img src="images/slider5.jpg" width="400" height="600" alt="">
-                                                        <div class="uk-position-center uk-panel"><h1>10</h1></div>
+                                                        <div className="uk-position-center uk-panel"><h1>10</h1></div>
                                                     </div>
                                                 </div> */}
                                                 {
                                                     channelsFromLocal.filter(channel => channel.groupTitle == category.name).map(channel => {
-                                                        console.log("channel in nested map", channel.title);
+                                                        
                                                         return (
-                                                            <ChannelCard channel={channel} currentChannel={currentChannel} handleChannelClick={handleChannelClick}/>
+                                                            <ChannelCard key={channel.title} channel={channel} currentChannel={currentChannel} handleChannelClick={handleChannelClick}/>
                                                         )
                                                     })
                                                 }
                                             </div>
 
-                                            <a class="uk-position-center-left uk-position-small uk-hidden-hover" data-href data-uk-slidenav-previous data-uk-slider-item="previous"></a>
-                                            <a class="uk-position-center-right uk-position-small uk-hidden-hover" data-href data-uk-slidenav-next data-uk-slider-item="next"></a>
+                                            <a className="uk-position-center-left uk-position-small uk-hidden-hover" data-href data-uk-slidenav-previous data-uk-slider-item="previous"></a>
+                                            <a className="uk-position-center-right uk-position-small uk-hidden-hover" data-href data-uk-slidenav-next data-uk-slider-item="next"></a>
 
                                         </div>
                                     </>

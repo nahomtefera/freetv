@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Hls from 'hls.js';
+import './player.css'
 
 function VideoPlayer({ currentChannel }) {
     const videoRef = useRef(null);
@@ -31,7 +32,7 @@ function VideoPlayer({ currentChannel }) {
     return (
         <div>
             {currentChannel && (
-                <video style={{maxHeight:'450px'}} ref={videoRef} controls playsInline width="1024" height="1080"></video>
+                <video id='video-player'  ref={videoRef} controls playsInline width="1024" height="1080"></video>
             )}
         </div>
     );

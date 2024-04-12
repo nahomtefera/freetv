@@ -31,7 +31,7 @@ function VideoPlayer({ currentChannel }) {
     return (
         <div>
             {currentChannel && (
-                <video ref={videoRef} controls playsInline width="1024" height="1080"></video>
+                <video style={{maxHeight:'450px'}} ref={videoRef} controls playsInline width="1024" height="1080"></video>
             )}
         </div>
     );

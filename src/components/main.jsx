@@ -402,8 +402,8 @@ export default function Main({selectedChannelFromAutoComplete, currentCategory})
         <div style={{background: 'black'}}>
 
             {currentChannel && (
-                <div className="uk-section">
-                    <div className="uk-container">
+                <div className="uk-section" style={{position:"sticky", top:"20px", background: "black", zIndex:"1"}}>
+                    <div className="uk-container" >
                         <VideoPlayer currentChannel={currentChannel} />
                     </div>
                 </div>

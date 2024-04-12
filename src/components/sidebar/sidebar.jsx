@@ -281,7 +281,8 @@ export default function PermanentDrawerLeft({children}) {
             background: '#ffeb3b', // Set the background color to white
             boxShadow: 'none',
             borderBottom: "1px solid #ccc",    // Remove the shadow
-            
+            position: "sticky",
+            top:"0"
           }}
       >
         <Toolbar sx={{

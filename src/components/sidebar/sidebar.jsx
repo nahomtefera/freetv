@@ -291,7 +291,7 @@ export default function PermanentDrawerLeft({children}) {
           gap: "10px"
         }}>
           <Typography variant="h6" flexShrink={0} noWrap color="#18181B" component="div">
-            freetv
+            suncraft
           </Typography>
           <Stack spacing={2} sx={{ width: isDesktop ? 600: 350, paddingLeft: isDesktop ? "3em" :"auto" }}>
             <Autocomplete

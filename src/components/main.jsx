@@ -456,7 +456,7 @@ export default function Main({selectedChannelFromAutoComplete, currentCategory})
                         )
                     }
                     
-                    <div className="container" style={{marginTop:'3em'}}>
+                    <div className="container" style={{margin:'3em 0 '}}>
                         {isLoading && <div style={{color:'white'}} data-uk-spinner="ratio: 3"></div>}
                     </div>
                     

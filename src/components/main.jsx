@@ -210,7 +210,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 function ChannelCard({ channel, currentChannel, handleChannelClick }) {
     const isDragging = useRef(false);
-  
+
     const handleDragStart = () => {
       isDragging.current = true;
     };
@@ -271,6 +271,7 @@ export default function Main({selectedChannelFromAutoComplete, currentCategory})
 
     const [channels, setChannels] = useState([]);
     const [currentChannel, setCurrentChannel] = useState('')
+    const [visibleCount, setVisibleCount] = useState(5);  // Start with 5 categories
 
     // const initializeCastApi = () => {
     //     cast.framework.CastContext.getInstance().setOptions({
@@ -286,6 +287,9 @@ export default function Main({selectedChannelFromAutoComplete, currentCategory})
     //         }
     //     };
     // }, []);
+    const loadMoreCategories = () => {
+        setVisibleCount((prevVisibleCount) => prevVisibleCount + 5);  // Load 5 more categories
+    };
 
     // change channel based on autocomplete search term
     useEffect(() => {
@@ -384,7 +388,7 @@ export default function Main({selectedChannelFromAutoComplete, currentCategory})
             <div className="uk-section" style={{paddingTop:'0px'}}>
                 <div className="uk-container" style={{maxWidth:"95vw", boxSizing:"border-box", margin:"1em auto"}}>
                     {
-                        categories.slice(0, 4).map(
+                        categories.slice(0, visibleCount).map(
                             category => {
                                 return (
                                     <>
@@ -420,6 +424,9 @@ export default function Main({selectedChannelFromAutoComplete, currentCategory})
                             }
                         )
                     }
+
+                    <button className="uk-button uk-button-default uk-button-large" style={{color:"white", marginTop:'3em'}} onClick={loadMoreCategories}>Load More Channels</button>
+
                 </div>
             </div>
 

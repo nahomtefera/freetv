@@ -22,11 +22,11 @@
 */
 
 #video-player {
-  max-height: 450px;
+  max-height: 400px;
 }
 
 @media (max-width: 768px) {
   #video-player {
-    max-height: 220px;
+    max-height: 200px;
   }
 }

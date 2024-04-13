@@ -209,6 +209,10 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 function ChannelCard({ channel, currentChannel, handleChannelClick }) {
+    const [imageLoaded, setImageLoaded] = useState(false);
+
+    const handleImageLoaded = () => {setImageLoaded(true)};
+
     const isDragging = useRef(false);
 
     const handleDragStart = () => {
@@ -252,13 +256,19 @@ function ChannelCard({ channel, currentChannel, handleChannelClick }) {
                         display:"flex",
                         alignItems: 'center',
                     }}>
-                    <img src={channel.tvgLogo} style={{
-                        width: '100%',    // Makes the image fill the container
-                        height: '170px',  // Fixed height for all images
-                        objectFit: 'contain',  // Ensures the image covers the area without distorting aspect ratio
-                        padding:"25px",
-                        objectPosition: 'center'  // Centers the image within the element bounds
-                    }} alt=""/>
+                    <img src={channel.tvgLogo} 
+                        className={!imageLoaded ? "loading-image" : ""}
+                        onLoad={handleImageLoaded}
+                        // style={imageLoaded ? {} : { width: '100px', height: '150px' }} // Adjust dimensions as necessary                    
+                        style={{
+                            width: '100%',    // Makes the image fill the container
+                            height: '170px',  // Fixed height for all images
+                            objectFit: 'contain',  // Ensures the image covers the area without distorting aspect ratio
+                            padding:"25px",
+                            objectPosition: 'center'  // Centers the image within the element bounds
+                        }}
+                     alt=""
+                    />
                 </div>
                 
             </div>
@@ -272,6 +282,7 @@ export default function Main({selectedChannelFromAutoComplete, currentCategory})
     const [channels, setChannels] = useState([]);
     const [currentChannel, setCurrentChannel] = useState('')
     const [visibleCount, setVisibleCount] = useState(5);  // Start with 5 categories
+    const [isLoading, setIsLoading] = useState(false);
 
     // const initializeCastApi = () => {
     //     cast.framework.CastContext.getInstance().setOptions({
@@ -287,8 +298,28 @@ export default function Main({selectedChannelFromAutoComplete, currentCategory})
     //         }
     //     };
     // }, []);
+    // const loadMoreCategories = () => {
+    //     setVisibleCount((prevVisibleCount) => prevVisibleCount + 5);  // Load 5 more categories
+    // };
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
+            loadMoreCategories();
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     const loadMoreCategories = () => {
-        setVisibleCount((prevVisibleCount) => prevVisibleCount + 5);  // Load 5 more categories
+        if (isLoading) return;
+    
+        setIsLoading(true);
+        setTimeout(() => {
+            setVisibleCount(prevVisibleCount => Math.min(prevVisibleCount + 3, categories.length));
+            setIsLoading(false);
+        }, 500);
     };
 
     // change channel based on autocomplete search term
@@ -389,10 +420,10 @@ export default function Main({selectedChannelFromAutoComplete, currentCategory})
                 <div className="uk-container" style={{maxWidth:"95vw", boxSizing:"border-box", margin:"1em auto"}}>
                     {
                         categories.slice(0, visibleCount).map(
-                            category => {
+                            (category, index) => {
                                 return (
                                     <>
-                                        <h4 key={category.name} style={{textAlign: 'left', fontWeight:'500', color:'#fff'}}>{category.name}</h4>
+                                        <h4 key={`category-${category.name}-${index}`} style={{textAlign: 'left', fontWeight:'500', color:'#fff'}}>{category.name}</h4>
                                         <div className="uk-position-relative uk-visible-toggle uk-light" tabIndex="-1" data-uk-slider>
                                             <div 
                                                 className="uk-slider-items uk-child-width-1-2 uk-child-width-1-5@m uk-grid"
@@ -405,10 +436,10 @@ export default function Main({selectedChannelFromAutoComplete, currentCategory})
                                                     </div>
                                                 </div> */}
                                                 {
-                                                    channelsFromLocal.filter(channel => channel.groupTitle == category.name).map(channel => {
+                                                    channelsFromLocal.filter((channel) => channel.groupTitle == category.name).map((channel, idx) => {
                                                         
                                                         return (
-                                                            <ChannelCard key={channel.title} channel={channel} currentChannel={currentChannel} handleChannelClick={handleChannelClick}/>
+                                                            <ChannelCard key={`${category.name}-channel-${channel.title}-${idx}`} channel={channel} currentChannel={currentChannel} handleChannelClick={handleChannelClick}/>
                                                         )
                                                     })
                                                 }
@@ -424,8 +455,13 @@ export default function Main({selectedChannelFromAutoComplete, currentCategory})
                             }
                         )
                     }
-
-                    <button className="uk-button uk-button-default uk-button-large" style={{color:"white", marginTop:'3em'}} onClick={loadMoreCategories}>Load More Channels</button>
+                    
+                    <div className="container" style={{marginTop:'3em'}}>
+                        {isLoading && <div style={{color:'white'}} data-uk-spinner="ratio: 3"></div>}
+                    </div>
+                    
+                    {/* <button className="uk-button uk-button-default uk-button-large" style={{color:"white", marginTop:'3em'}} onClick={loadMoreCategories}>Load More Channels</button> */}
+                    
 
                 </div>
             </div>
@@ -465,61 +501,6 @@ export default function Main({selectedChannelFromAutoComplete, currentCategory})
                                         </div>
                                     </div>
                                 )
-                                // return (
-                                //     <div className="avatar__wrapper"         style={{
-                                //         flex: '1 1 20%', // Equal width for 3 cards per row with some spacing
-                                //         margin: '10px', // Adjust spacing between cards
-                                //         borderRadius: '20px',
-                                //         overflow: 'hidden', // Ensure consistent heights
-                                //       }}>
-                                //         <Item 
-                                //             onClick={()=>{handleChannelClick(channel)}}
-                                //             sx={{ 
-                                //                 my: 1, 
-                                //                 mx: 'auto', 
-                                //                 p: 2, 
-                                //                 cursor:'pointer',
-                                //                 boxShadow:"none",
-                                //                 background: currentChannel.title === channel.title 
-                                //                     ? '#f5f5f5' 
-                                //                     : 'inherit',
-                                //                 '&:hover': {
-                                //                     backgroundColor: '#00000009',
-                                //                 }
-                                //             }} 
-                                //         >
-                                //             <Stack
-                                //                 spacing={2} 
-                                //                 direction="row" 
-                                //                 alignItems="center" 
-                                //                 justifyContent="left"
-                                //                 sx={{
-                                //                     boxShadow:"none"
-                                //                 }}
-                                //             >
-                                //                 <Avatar 
-                                //                     key={channel.title} 
-                                //                     src={channel.tvgLogo} 
-                                //                     sx={{ width: 50, height: 50}}
-                                //                     imgProps={{ style: { objectFit: 'cover' } }}
-                                //                     style={{background:"#00000066"}}
-                                //                     variant="rounded"
-                                //                 />                                    
-                                //                 <Typography wrap
-                                //                     primaryTypographyProps={{ fontSize: 'small', fontWeight: '600', color:'#141414' }}
-                                //                     sx={{
-                                //                         whiteSpace: 'nowrap', // Prevent text from wrapping
-                                //                         overflow: 'hidden',
-                                //                         textOverflow: 'ellipsis', // Show ellipsis for long titles
-                                //                         fontSize: 'small',
-                                //                         fontWeight: '600',
-                                //                         color: '#141414'
-                                //                     }}
-                                //                 >{channel.title}</Typography>
-                                //             </Stack>
-                                //         </Item>
-                                //     </div>
-                                // )
                             })}
                         </div>           
                         

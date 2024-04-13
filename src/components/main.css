@@ -101,3 +101,23 @@ html body {
   overflow: unset !important;
   padding: 0!important;
 }
+
+
+@keyframes pulse {
+  0% {
+    background-color: #eee;
+  }
+  50% {
+    background-color: #ccc;
+  }
+  100% {
+    background-color: #eee;
+  }
+}
+
+.loading-image {
+  display: block;
+  width: 100%; /* Adjust width as necessary */
+  height: 150px; /* Adjust height as necessary */
+  animation: pulse 1.5s ease-in-out infinite;
+}

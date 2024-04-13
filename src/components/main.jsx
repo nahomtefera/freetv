@@ -348,35 +348,6 @@ export default function Main({selectedChannelFromAutoComplete, currentCategory})
 
         return title;
     }
-
-    function getContrastYIQ([r, g, b]) {
-        // Calculate the luminance of the color
-        const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
-        return yiq >= 128 ? 'black' : 'white';  // Adjust this threshold value as necessary
-    }
-
-    async function preprocessChannels(channels) {
-        const processedChannels = await Promise.all(channels.map(async (channel) => {
-            const options = { format: 'rgbArray', quality: 10, crossOrigin: '' };
-            try {
-                const dominantColor = await getColor(channel.tvgLogo, options);
-                const backgroundColor = getContrastYIQ(dominantColor);
-                return {
-                    ...channel,
-                    background: backgroundColor
-                };
-            } catch (error) {
-                console.error('Error fetching dominant color:', error);
-                return {
-                    ...channel,
-                    background: 'white' // default background if error occurs
-                };
-            }
-        }));
-    
-        return processedChannels;
-    }
-
     // preprocessChannels(channels).then(channelsWithBackground => {
     //     console.log("channelsWithBackground: ", channelsWithBackground)
     //     setChannels(channelsWithBackground)
@@ -404,6 +375,7 @@ export default function Main({selectedChannelFromAutoComplete, currentCategory})
             {currentChannel && (
                 <div className="uk-section" style={{position:"sticky", top:"20px", background: "black", zIndex:"1"}}>
                     <div className="uk-container" >
+                        <h2 style={{color:'white'}}>{formatChannelTitle(currentChannel.title)}</h2>
                         <VideoPlayer currentChannel={currentChannel} />
                     </div>
                 </div>

@@ -392,7 +392,7 @@ export default function Main({selectedChannelFromAutoComplete, currentCategory})
                                         <div className="uk-position-relative uk-visible-toggle uk-light" tabIndex="-1" data-uk-slider>
                                             <div 
                                                 className="uk-slider-items uk-child-width-1-2 uk-child-width-1-5@m uk-grid"
-                                                style={{ display: 'flex', gap:"15px"}}
+                                                style={{ display: 'flex', gap:"15px", padding:"15px", marginLeft:"0"}}
                                             >
                                                 {/* <div>
                                                     <div className="uk-panel">

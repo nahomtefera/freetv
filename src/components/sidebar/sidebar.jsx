@@ -247,6 +247,7 @@ export default function PermanentDrawerLeft({children}) {
     });
   }, []);
 
+  useEffect(()=>{console.log('filteredChannels', filteredChannels)},[filteredChannels])
 
   const debouncedHandleSearchTermChange = debounce((newSearchTerm) => {
     console.log("newSearchTerm: ", newSearchTerm);

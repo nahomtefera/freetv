@@ -308,7 +308,7 @@ export default function PermanentDrawerLeft({children}) {
           </Stack>
         </Toolbar>
       </AppBar>
-
+        Test / below is main
       <Main selectedChannelFromAutoComplete={selectedChannelFromAutoComplete} currentCategory={currentCategory} filteredChannels/>
     </Box>
   );

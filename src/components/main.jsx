@@ -1,8 +1,8 @@
 /* global cast, chrome */
 import { useEffect, useState, useRef } from "react";
 import VideoPlayer from "./player/player";
-import {ColorThief} from 'color-thief-react';
-import { getColor } from 'color-thief-react';
+// import {ColorThief} from 'color-thief-react';
+// import { getColor } from 'color-thief-react';
 import { Clapperboard, CarFront, Briefcase, Film, Laugh, ChefHat, Landmark, BookOpenText, GraduationCap, Drama, UsersRound, Shapes, Baby, ScrollText, Coffee, Popcorn, Music2, Newspaper, FlameKindling, Palmtree, Church, Atom, Tv, Store, Bike, Plane, CloudSun, AlertTriangle, Blocks, Menu} from 'lucide-react';
 
 // packages
@@ -284,24 +284,6 @@ export default function Main({selectedChannelFromAutoComplete, currentCategory})
     const [visibleCount, setVisibleCount] = useState(5);  // Start with 5 categories
     const [isLoading, setIsLoading] = useState(false);
 
-    // const initializeCastApi = () => {
-    //     cast.framework.CastContext.getInstance().setOptions({
-    //         receiverApplicationId: chrome.cast.media.DEFAULT_MEDIA_RECEIVER_APP_ID,
-    //         autoJoinPolicy: chrome.cast.AutoJoinPolicy.ORIGIN_SCOPED
-    //     });
-    // };
-    
-    // useEffect(() => {
-    //     window['__onGCastApiAvailable'] = function(isAvailable) {
-    //         if (isAvailable) {
-    //             initializeCastApi();
-    //         }
-    //     };
-    // }, []);
-    // const loadMoreCategories = () => {
-    //     setVisibleCount((prevVisibleCount) => prevVisibleCount + 5);  // Load 5 more categories
-    // };
-
     useEffect(() => {
         const handleScroll = () => {
             if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) return;
@@ -348,29 +330,6 @@ export default function Main({selectedChannelFromAutoComplete, currentCategory})
             // Handle error if needed
         }
     }
- 
-    // useEffect(()=>{
-    //     const fetchPlaylist = async () => {
-    //         const response = await fetch(currentCategory.url);
-    //         const data = await response.text();
-    //         return data;
-    //     };
-                
-    //     const displayChannels = async () => {
-    //         const playlist = await fetchPlaylist();
-    //         const channels = parseM3U(playlist);
-
-    //         setChannels(channels);
-    //     };
-    //     console.log(channels)
-    //     displayChannels();
-    // }, [currentCategory])
-
-    useEffect(() => {
-        // console.log("channelsFromLocal: ", channelsFromLocal)
-        // setChannels(channelsFromLocal.filter(channel => channel.groupTitle == currentCategory.name))
-        // console.log("categories: ", categories)
-    }, [])
 
     function formatChannelTitle(title) {
             // Remove unwanted patterns first: resolution info and bracketed content
@@ -406,7 +365,7 @@ export default function Main({selectedChannelFromAutoComplete, currentCategory})
     return (
 
         <div style={{background: 'black'}}>
-
+            <div style={{background:'red', color:'white'}}>Test</div> 
             {currentChannel && (
                 <div className="uk-section" style={{position:"sticky", top:"20px", background: "black", zIndex:"1"}}>
                     <div className="uk-container" >
@@ -418,11 +377,15 @@ export default function Main({selectedChannelFromAutoComplete, currentCategory})
 
             <div className="uk-section" style={{paddingTop:'0px'}}>
                 <div className="uk-container" style={{maxWidth:"95vw", boxSizing:"border-box", margin:"1em auto"}}>
+                    <div style={{background:'red', color:'white'}}>Test</div>
                     {
                         categories.slice(0, visibleCount).map(
                             (category, index) => {
                                 return (
                                     <>
+                                        <div style={{background:'blue', color:'white'}}>Test</div>
+
+
                                         <h4 key={`category-${category.name}-${index}`} style={{textAlign: 'left', fontWeight:'500', color:'#fff'}}>{category.name}</h4>
                                         <div className="uk-position-relative uk-visible-toggle uk-light" tabIndex="-1" data-uk-slider>
                                             <div 
